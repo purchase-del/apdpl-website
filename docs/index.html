@@ -106,8 +106,8 @@
     header.scrolled .navbar { padding-block: 5px; }
 
     .brand {
-      display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
-      position: relative; z-index: 2; text-align: left; flex: none;
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      position: relative; z-index: 2; text-align: center; flex: none;
     }
     .brand-logo {
       width: min(170px, 42vw); height: auto;
@@ -116,7 +116,7 @@
     .brand:hover .brand-logo { transform: scale(1.04); }
     .brand-name {
       color: #1F4D3A; font-size: clamp(.68rem, 1.1vw, .92rem); font-weight: 800;
-      line-height: 1.2; letter-spacing: .045em;
+      line-height: 1.2; letter-spacing: .045em; white-space: nowrap;
     }
     .brand-tagline {
       color: #1F4D3A; font-size: clamp(.72rem, .95vw, .9rem); font-weight: 600;
