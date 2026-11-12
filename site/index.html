@@ -99,15 +99,15 @@
     }
 
     .navbar {
-      position: relative; display: grid; grid-template-areas: "brand" "nav";
-      justify-items: center; gap: 0; padding: 8px 0 0;
+      position: relative; display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; padding: 8px 0;
       transition: padding .3s var(--ease);
     }
-    header.scrolled .navbar { padding-top: 5px; }
+    header.scrolled .navbar { padding-block: 5px; }
 
     .brand {
-      grid-area: brand; display: flex; flex-direction: column; align-items: center; gap: 2px;
-      position: relative; z-index: 2; text-align: center;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+      position: relative; z-index: 2; text-align: left; flex: none;
     }
     .brand-logo {
       width: min(170px, 42vw); height: auto;
@@ -124,7 +124,8 @@
     }
 
     .nav-links {
-      grid-area: nav; display: flex; align-items: center; gap: 6px;
+      display: flex; align-items: center; justify-content: flex-end; gap: 6px;
+      margin-left: auto;
       font-size: 13.5px; font-weight: 600;
     }
 
