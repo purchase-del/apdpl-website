@@ -107,7 +107,7 @@
 
     .brand {
       display: flex; flex-direction: column; align-items: center; gap: 2px;
-      position: relative; z-index: 2; text-align: center; flex: none;
+      position: relative; z-index: 2; align-self: flex-start; text-align: center; flex: none;
       max-width: min(390px, 48vw);
       margin-right: auto;
     }
@@ -615,7 +615,7 @@
     @media (max-width: 1024px) {
       header { -webkit-backdrop-filter: none; backdrop-filter: none; }
       .navbar { padding-right: 52px; min-height: 76px; }
-      .brand { width: 100%; max-width: none; margin-right: 0; }
+      .brand { width: auto; max-width: calc(100% - 52px); margin-right: auto; }
       .menu-toggle { display: block; position: absolute; top: 50%; right: 0; transform: translateY(-50%); }
       .nav-links {
         position: fixed; inset: 0; z-index: 1; padding: 100px var(--gutter) 40px;
@@ -655,7 +655,7 @@
       .float-card.f1 { left: -2%; }
       .float-card.f2 { bottom: 24%; right: -2%; }
       .float-card.f3 { bottom: -2%; }
-      .brand { width: 100%; max-width: none; }
+      .brand { width: auto; max-width: calc(100% - 52px); }
       .brand-logo { width: min(130px, 38vw); }
       .brand-line { font-size: clamp(.52rem, 2.7vw, .7rem); letter-spacing: .02em; }
       .cta-row .primary-button, .cta-row .ghost-button { flex: 1 1 100%; justify-content: center; }
@@ -693,7 +693,7 @@
 
     @media (max-width: 360px) {
       .navbar { padding-right: 46px; }
-      .brand { width: 100%; max-width: none; }
+      .brand { width: auto; max-width: calc(100% - 46px); }
       .hero-visual { margin-bottom: 16px; }
       .float-card.f2 { bottom: 8%; }
       .float-card.f3 { bottom: -24%; }
