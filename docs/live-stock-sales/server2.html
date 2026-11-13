@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Server 2 | Live Stock &amp; Sales | Aushad Pharma Distributors</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0a1a3a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/server-connection.css">
+</head>
+<body>
+<header class="sc-header">
+  <a class="sc-brand" href="../index.html" aria-label="Aushad Pharma Distributors home">Aushad<span> Pharma</span></a>
+  <a class="sc-top-link" href="live_stock_sale.html">&larr; Server Selection</a>
+</header>
+<main>
+  <section class="sc-card" data-server-id="server2" data-server-name="Server 2" data-server-url="http://103.21.235.90:8181/livestocksales/" aria-labelledby="sc-title">
+    <p class="sc-eyebrow">Live Stock &amp; Sales</p>
+    <h1 id="sc-title">Server 2</h1>
+    <p class="sc-desc">Secondary Distribution Node</p>
+    <div class="sc-visual" aria-hidden="true">
+      <span class="sc-ring"></span><span class="sc-ring"></span><span class="sc-ring"></span>
+      <div class="sc-server"><svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"><rect x="8" y="8" width="48" height="14" rx="4"/><rect x="8" y="25" width="48" height="14" rx="4"/><rect x="8" y="42" width="48" height="14" rx="4"/><circle class="sc-led" cx="16" cy="15" r="2.5" fill="#5aa2ff" stroke="none"/><circle cx="16" cy="32" r="2.5" fill="#5aa2ff" stroke="none"/><circle cx="16" cy="49" r="2.5" fill="#5aa2ff" stroke="none"/><path d="M40 15h10M40 32h6M40 49h10" stroke-linecap="round" stroke-dasharray="1 5"/></svg></div>
+    </div>
+    <div id="sc-progress" class="sc-progress" role="progressbar" aria-label="Connection preparation progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="sc-bar" class="sc-bar"></div></div>
+    <ul class="sc-steps" aria-hidden="true"><li></li><li></li><li></li><li></li></ul>
+    <p id="sc-stage" class="sc-stage" aria-live="polite">Initialising connection<span id="sc-dots" class="sc-dots" aria-hidden="true"><i></i><i></i><i></i></span></p>
+    <p id="sc-status" class="sc-status" role="status">Please wait.</p>
+    <p class="sc-note">This portal uses an unencrypted HTTP address.</p>
+    <div id="sc-fail" class="sc-fail" hidden>
+      <p id="sc-fail-msg"></p>
+      <div class="sc-actions row">
+        <button type="button" id="sc-retry" class="sc-btn primary">Retry Connection</button>
+        <a class="sc-btn" href="http://103.21.235.90:8181/livestocksales/" rel="noopener">Open Server Directly</a>
+      </div>
+    </div>
+    <noscript><p class="sc-status">JavaScript is off. <a href="http://103.21.235.90:8181/livestocksales/">Open Server 2 directly</a>.</p></noscript>
+    <div class="sc-actions row">
+      <a class="sc-btn" href="live_stock_sale.html">Back to Server Selection</a>
+      <a class="sc-btn" href="../index.html">Return to Aushad Homepage</a>
+    </div>
+  </section>
+</main>
+<script src="js/server-connection.js"></script>
+</body>
+</html>

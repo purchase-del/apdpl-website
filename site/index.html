@@ -453,6 +453,31 @@
 
     .portal-note { margin-top: 28px; font-size: 12px !important; opacity: .8; }
 
+    /* Live Stock & Sales */
+    .live-stock-panel {
+      max-width: 1000px; margin: auto; padding: clamp(28px, 4vw, 44px);
+      border: 1px solid var(--border); border-radius: 28px; background: #fff;
+      box-shadow: 0 18px 44px #19324D0D;
+    }
+    .live-stock-panel > p { max-width: 40em; margin: 0 auto; color: var(--muted); text-align: center; }
+    .live-stock-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+    .live-stock-button {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 72px; padding: 18px 22px; border: 1px solid #19324D20; border-radius: 18px;
+      background: var(--navy); color: #fff; font-size: 1rem; font-weight: 700;
+      box-shadow: 0 8px 22px #19324D1A;
+      transition: transform .3s var(--ease), box-shadow .3s, background .3s;
+    }
+    .live-stock-button:hover { transform: translateY(-3px); background: var(--maroon); box-shadow: 0 14px 28px #19324D20; }
+    .live-stock-button .arrow { color: #fff; font-size: 1.2rem; transition: transform .3s var(--ease); }
+    .live-stock-button:hover .arrow { transform: translateX(4px); }
+    .live-stock-button:focus-visible { outline: 2px solid var(--maroon); outline-offset: 4px; }
+    @media (max-width: 560px) {
+      .live-stock-panel { padding: 24px 18px; border-radius: 22px; }
+      .live-stock-actions { grid-template-columns: 1fr; gap: 12px; margin-top: 22px; }
+      .live-stock-button { min-height: 64px; }
+    }
+
     /* Contact */
     .contact-grid {
       display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(26px, 4vw, 56px); align-items: start;
@@ -801,6 +826,25 @@
           <div class="step reveal" style="--d:.15s"><div class="step-dot">2</div><h3>Organise</h3><p>Managing stock and operations with care.</p></div>
           <div class="step reveal" style="--d:.25s"><div class="step-dot">3</div><h3>Distribute</h3><p>Reaching healthcare partners and pharmacies.</p></div>
           <div class="step reveal" style="--d:.35s"><div class="step-dot">4</div><h3>Support</h3><p>Dedicated service that keeps relationships strong.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE STOCK & SALES -->
+    <section class="live-stock" id="live-stock-sales">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span>LIVE BUSINESS ACCESS</span>
+          <h2>Live Stock &amp; Sales</h2>
+          <p>Choose a server to open the Live Stock &amp; Sales portal.</p>
+        </div>
+
+        <div class="live-stock-panel reveal">
+          <p>Access current stock and sales information through either available server.</p>
+          <div class="live-stock-actions">
+            <a class="live-stock-button" href="live-stock-sales/server1.html">Server 1 <span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="live-stock-button" href="live-stock-sales/server2.html">Server 2 <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          </div>
         </div>
       </div>
     </section>
