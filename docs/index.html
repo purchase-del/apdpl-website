@@ -230,6 +230,44 @@
     .hero-right .eyebrow { margin-bottom: 20px; }
     .hero-right .hero-visual { width: min(100%, 400px); margin: 0 auto; }
 
+    /* Hero 3D photographic carousel */
+    .stage { position: relative; width: 100%; max-width: 620px; margin-inline: auto; container-type: inline-size; }
+    .cstage { position: relative; width: 100%; aspect-ratio: 100 / 84; perspective: 1500px; perspective-origin: 50% 42%; touch-action: pan-y; outline-offset: 4px; }
+    .cstage::before { content: ""; position: absolute; left: 18%; right: 18%; bottom: 4%; height: 7%; background: radial-gradient(ellipse at center, #17294538, transparent 70%); filter: blur(10px); pointer-events: none; }
+    .slide { --x: 0%; --z: 0px; --ry: 0deg; --s: 1; position: absolute; left: 17%; top: 3%; width: 66%; aspect-ratio: 1 / 1; margin: 0; border-radius: 10px; overflow: hidden; background: #DFE4EA; cursor: pointer;
+      transform: translateX(var(--x)) translateZ(var(--z)) rotateY(var(--ry)) scale(var(--s)); transform-origin: 50% 50%;
+      opacity: 0; pointer-events: none; z-index: 0; will-change: transform, opacity;
+      box-shadow: 0 26px 40px -18px #17294580, 0 6px 14px #17294526;
+      transition: transform .95s var(--ease), opacity .7s var(--ease), filter .7s var(--ease), box-shadow .7s; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; -webkit-user-drag: none; }
+    .slide::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px #FFFFFF2E; pointer-events: none; }
+    .slide[data-pos="0"]  { --x: 0%;    --z: 0px;    --ry: 0deg;   --s: 1;   opacity: 1; z-index: 5; pointer-events: auto; cursor: default; }
+    .slide[data-pos="-1"] { --x: -40%;  --z: -90px;  --ry: 17deg;  --s: .8; opacity: .92; z-index: 4; pointer-events: auto; filter: saturate(.6) brightness(.92); }
+    .slide[data-pos="1"]  { --x: 40%;   --z: -90px;  --ry: -17deg; --s: .8; opacity: .92; z-index: 4; pointer-events: auto; filter: saturate(.6) brightness(.92); }
+    .slide[data-pos="-2"] { --x: -62%;  --z: -190px; --ry: 24deg;  --s: .62; opacity: .55; z-index: 3; pointer-events: auto; filter: saturate(.4) brightness(.88); }
+    .slide[data-pos="2"]  { --x: 62%;   --z: -190px; --ry: -24deg; --s: .62; opacity: .55; z-index: 3; pointer-events: auto; filter: saturate(.4) brightness(.88); }
+    .slide[data-pos="-1"]:hover, .slide[data-pos="1"]:hover { opacity: 1; filter: saturate(.85) brightness(1); }
+    .slide:focus-visible { outline: 3px solid var(--orange); outline-offset: -3px; }
+    .slide-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 14% 5% 4.5%; color: #fff; background: linear-gradient(to top, #0E1D30E6 0%, #19324D99 48%, transparent 100%);
+      opacity: 0; transform: translateY(10px); transition: opacity .6s var(--ease) .25s, transform .7s var(--ease) .25s; pointer-events: none; }
+    .slide[data-pos="0"] .slide-cap { opacity: 1; transform: none; }
+    .slide-cap small { display: block; font-size: max(9px, 1.9cqw); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #FFA56B; margin-bottom: .25em; }
+    .slide-cap b { display: block; font-size: max(15px, 3.6cqw); font-weight: 500; line-height: 1.15; letter-spacing: -.01em; }
+    .slide-cap::before { content: ""; display: block; width: 28px; height: 2px; margin-bottom: .6em; background: var(--orange); border-radius: 2px; }
+    .ctrl { position: absolute; left: 0; right: 0; bottom: 0; z-index: 6; display: flex; align-items: center; justify-content: center; gap: 14px; }
+    .nav-arrow { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: #fff; color: var(--navy); display: grid; place-items: center; cursor: pointer; box-shadow: 0 6px 14px -8px #17294555; transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease); }
+    .nav-arrow:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .nav-arrow:active { transform: scale(.94); }
+    .nav-arrow svg { width: 16px; height: 16px; }
+    .dots { display: flex; align-items: center; gap: 2px; }
+    .dot { width: 24px; height: 24px; border: 0; background: none; cursor: pointer; display: grid; place-items: center; padding: 0; }
+    .dot::before { content: ""; width: 7px; height: 7px; border-radius: 4px; background: #B6C0CC; transition: width .4s var(--ease), background .3s; }
+    .dot:hover::before { background: var(--navy); }
+    .dot[aria-current="true"]::before { width: 22px; background: var(--maroon); }
+    .pause { position: absolute; right: 0; bottom: 4px; border: 0; background: none; color: var(--muted); font: inherit; font-size: .78rem; font-weight: 600; cursor: pointer; padding: 6px 4px; }
+    .pause:hover { color: var(--maroon); }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
     .eyebrow {
       display: inline-flex; align-items: center; gap: 9px;
       color: var(--maroon); background: #F4EDF1; border: 1px solid #842C521A;
@@ -593,6 +631,15 @@
       .nav-button { margin: 18px 0 0; text-align: center; padding: 16px; }
     }
 
+    @media (min-width: 821px) {
+      .stage { max-width: clamp(340px, calc((100svh - 250px) / .78), 620px); }
+    }
+
+    @media (max-width: 820px) {
+      .stage { max-width: 540px; }
+      .pause { position: static; display: block; margin: 4px auto 0; }
+    }
+
     @media (max-width: 640px) {
       .hero { padding-block: 36px 44px; }
       h1 { font-size: clamp(1.7rem, 7.5vw, 2.75rem); }
@@ -615,6 +662,15 @@
       .cta-row { gap: 10px; }
       .cta-row .primary-button, .cta-row .ghost-button { min-height: 50px; padding: 12px 20px; }
       .footer-top, .footer-bottom { flex-direction: column; }
+    }
+
+    @media (max-width: 640px) {
+      .slide { left: 15%; width: 70%; border-radius: 8px; }
+      .slide[data-pos="-1"] { --x: -33%; --ry: 14deg; }
+      .slide[data-pos="1"]  { --x: 33%;  --ry: -14deg; }
+      .slide[data-pos="-2"] { --x: -50%; }
+      .slide[data-pos="2"]  { --x: 50%; }
+      .nav-arrow { width: 44px; height: 44px; }
     }
 
     @media (max-width: 820px) {
@@ -715,47 +771,43 @@
         </aside>
 
         <div class="hero-right">
-        <div class="hero-content">
-          <span class="eyebrow">AUSHAD PHARMA DISTRIBUTORS</span>
-
-          <h1>
-            <span class="line"><span>Delivering healthcare.</span></span>
-            <span class="line"><span class="accent">Building trust.</span></span>
-          </h1>
-
-          <p class="hero-text reveal" style="--d:.5s">
-            Connecting pharmaceutical manufacturers, healthcare partners and
-            pharmacies through reliable distribution and dedicated service.
-          </p>
-
-          <div class="cta-row reveal" style="--d:.65s">
-            <a href="#about" class="primary-button">Discover Aushad <span class="arrow">→</span></a>
-            <a href="#contact" class="ghost-button">Talk to our team</a>
+          <div class="stage" id="stage" role="group" aria-roledescription="carousel" aria-label="Photographs of Aushad Pharma Distributors">
+            <div class="cstage" id="cstage" tabindex="0" aria-label="Photo carousel. Use left and right arrow keys to change photos.">
+              <figure class="slide" data-pos="0" data-caption="Pharmaceutical Warehouse">
+                <img src="assets/photos/optimized/Warehouse_photo.webp" alt="Aushad pharmaceutical warehouse" style="object-position:50% 50%" decoding="async" fetchpriority="high">
+                <figcaption class="slide-cap"><small>01 / 05</small><b>Pharmaceutical Warehouse</b></figcaption>
+              </figure>
+              <figure class="slide" data-pos="1" data-caption="Medicine Store">
+                <img src="assets/photos/optimized/store%20photo.webp" alt="Aushad medicine store" style="object-position:50% 50%" decoding="async">
+                <figcaption class="slide-cap"><small>02 / 05</small><b>Medicine Store</b></figcaption>
+              </figure>
+              <figure class="slide" data-pos="2" data-caption="Our Sales Team">
+                <img src="assets/photos/optimized/Sales_team.webp" alt="Aushad sales team" style="object-position:50% 35%" decoding="async">
+                <figcaption class="slide-cap"><small>03 / 05</small><b>Our Sales Team</b></figcaption>
+              </figure>
+              <figure class="slide" data-pos="-2" data-caption="Corporate Office">
+                <img src="assets/photos/optimized/coreprate%20office.webp" alt="Aushad corporate office" style="object-position:50% 50%" decoding="async">
+                <figcaption class="slide-cap"><small>04 / 05</small><b>Corporate Office</b></figcaption>
+              </figure>
+              <figure class="slide" data-pos="-1" data-caption="Our Corporate Facility">
+                <img src="assets/photos/optimized/outside%20building.webp" alt="Aushad corporate facility building" style="object-position:50% 50%" decoding="async">
+                <figcaption class="slide-cap"><small>05 / 05</small><b>Our Corporate Facility</b></figcaption>
+              </figure>
+              <div class="ctrl">
+                <button class="nav-arrow" id="prevBtn" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+                <div class="dots" id="dots">
+                  <button class="dot" type="button" data-i="0" aria-label="Show photo 1: Pharmaceutical Warehouse"></button>
+                  <button class="dot" type="button" data-i="1" aria-label="Show photo 2: Medicine Store"></button>
+                  <button class="dot" type="button" data-i="2" aria-label="Show photo 3: Our Sales Team"></button>
+                  <button class="dot" type="button" data-i="3" aria-label="Show photo 4: Corporate Office"></button>
+                  <button class="dot" type="button" data-i="4" aria-label="Show photo 5: Our Corporate Facility"></button>
+                </div>
+                <button class="nav-arrow" id="nextBtn" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+              </div>
+              <p class="sr-only" id="live" aria-live="polite"></p>
+            </div>
+            <button class="pause" id="pauseBtn" type="button" aria-pressed="false">Pause photos</button>
           </div>
-
-          <div class="hero-tags reveal" style="--d:.8s">
-            <span>Distribution</span>
-            <span>Partnerships</span>
-            <span>Operations</span>
-          </div>
-        </div>
-
-        <div class="hero-visual reveal" style="--d:.3s" aria-hidden="true">
-          <div class="orbit"><i></i></div>
-          <div class="orbit o2"><i></i></div>
-          <div class="orbit o3"><i></i></div>
-
-          <div class="core">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 5v14M5 12h14"/>
-              <rect x="3" y="3" width="18" height="18" rx="5"/>
-            </svg>
-          </div>
-
-          <div class="float-card f1"><div class="ic">💊</div><div>Pharma Supply<small>Reliable distribution</small></div></div>
-          <div class="float-card f2"><div class="ic">🤝</div><div>Trusted Partners<small>Built on relationships</small></div></div>
-          <div class="float-card f3"><div class="ic">🚚</div><div>Dedicated Service<small>Organised operations</small></div></div>
-        </div>
         </div>
       </div>
 
@@ -1015,15 +1067,78 @@
           });
         });
 
-        var visual = doc.querySelector('.hero-visual');
-        var hero = doc.querySelector('.hero');
-        if (visual && hero) {
-          hero.addEventListener('mousemove', function (e) {
-            var x = (e.clientX / window.innerWidth - .5) * 2;
-            var y = (e.clientY / window.innerHeight - .5) * 2;
-            visual.style.transform = 'translate(' + (x * 10) + 'px,' + (y * 10) + 'px)';
+      }
+
+      /* Hero 3D carousel: layered cards, arrows, dots, swipe, autoplay */
+      var stage = doc.getElementById('stage');
+      if (stage) {
+        var cstage = doc.getElementById('cstage');
+        var slides = [].slice.call(cstage.querySelectorAll('.slide'));
+        var dotEls = [].slice.call(doc.querySelectorAll('#dots .dot'));
+        var live = doc.getElementById('live');
+        var pauseBtn = doc.getElementById('pauseBtn');
+        var n = slides.length, idx = 0;
+        var userPaused = false, hovering = false, inView = true, lastTouch = 0;
+        var INTERVAL = 5500, RESUME_AFTER = 7000;
+
+        function render(announce) {
+          slides.forEach(function (el, i) {
+            var o = ((i - idx) % n + n) % n;
+            if (o > n / 2) o -= n;
+            el.dataset.pos = o;
+            el.setAttribute('aria-hidden', o === 0 ? 'false' : 'true');
+            if (o === 0) { el.removeAttribute('role'); el.removeAttribute('aria-label'); el.tabIndex = -1; }
+            else { el.setAttribute('role', 'button'); el.setAttribute('aria-label', 'Show ' + el.dataset.caption); el.tabIndex = Math.abs(o) === 1 ? 0 : -1; }
           });
-          hero.addEventListener('mouseleave', function () { visual.style.transform = ''; });
+          dotEls.forEach(function (d, i) { d.setAttribute('aria-current', i === idx ? 'true' : 'false'); });
+          if (announce) live.textContent = slides[idx].dataset.caption + ', photo ' + (idx + 1) + ' of ' + n;
+        }
+        function go(i, user) {
+          idx = ((i % n) + n) % n;
+          if (user) lastTouch = Date.now();
+          render(true);
+        }
+        render(false);
+
+        doc.getElementById('prevBtn').addEventListener('click', function () { go(idx - 1, true); });
+        doc.getElementById('nextBtn').addEventListener('click', function () { go(idx + 1, true); });
+        dotEls.forEach(function (d) { d.addEventListener('click', function () { go(+d.dataset.i, true); }); });
+        slides.forEach(function (el, i) {
+          el.addEventListener('click', function () { if (el.dataset.pos !== '0') go(i, true); });
+          el.addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && el.dataset.pos !== '0') { e.preventDefault(); go(i, true); } });
+        });
+        cstage.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowLeft') { e.preventDefault(); go(idx - 1, true); }
+          if (e.key === 'ArrowRight') { e.preventDefault(); go(idx + 1, true); }
+        });
+
+        var sx = null;
+        cstage.addEventListener('pointerdown', function (e) { sx = e.clientX; });
+        cstage.addEventListener('pointerup', function (e) {
+          if (sx === null) return;
+          var dx = e.clientX - sx; sx = null;
+          if (Math.abs(dx) > 45) go(idx + (dx < 0 ? 1 : -1), true);
+        });
+        cstage.addEventListener('pointercancel', function () { sx = null; });
+
+        if (reduce) {
+          pauseBtn.hidden = true;
+        } else {
+          setInterval(function () {
+            if (!userPaused && !hovering && inView && !doc.hidden && Date.now() - lastTouch > RESUME_AFTER - INTERVAL) go(idx + 1, false);
+          }, INTERVAL);
+          stage.addEventListener('mouseenter', function () { hovering = true; });
+          stage.addEventListener('mouseleave', function () { hovering = false; lastTouch = Date.now(); });
+          stage.addEventListener('focusin', function () { hovering = true; });
+          stage.addEventListener('focusout', function () { hovering = false; });
+          if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (en) { inView = en[0].isIntersecting; }).observe(stage);
+          }
+          pauseBtn.addEventListener('click', function () {
+            userPaused = !userPaused;
+            pauseBtn.setAttribute('aria-pressed', userPaused);
+            pauseBtn.textContent = userPaused ? 'Resume photos' : 'Pause photos';
+          });
         }
       }
 
