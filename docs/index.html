@@ -106,9 +106,9 @@
     header.scrolled .navbar { padding-block: 5px; }
 
     .brand {
-      display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
-      position: relative; z-index: 2; text-align: left; flex: none;
-      max-width: min(360px, 48vw);
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      position: relative; z-index: 2; text-align: center; flex: none;
+      max-width: min(390px, 48vw);
       margin-right: auto;
     }
     .brand-logo {
@@ -116,18 +116,14 @@
       transition: transform .5s var(--ease);
     }
     .brand:hover .brand-logo { transform: scale(1.04); }
-    .brand-name {
-      color: #1F4D3A; font-size: clamp(.64rem, .9vw, .92rem); font-weight: 800;
-      line-height: 1.2; letter-spacing: .045em; white-space: nowrap;
+    .brand-lines { display: flex; flex-direction: column; align-items: center; gap: 2px; width: 100%; }
+    .brand-line {
+      display: block; max-width: 100%;
+      font-size: clamp(.62rem, .75vw, .78rem); font-weight: 700; line-height: 1.2;
+      letter-spacing: .035em; white-space: nowrap;
     }
-    .brand-tagline {
-      color: #1F4D3A; font-size: clamp(.62rem, .8vw, .86rem); font-weight: 600;
-      line-height: 1.25; white-space: nowrap;
-    }
-    .brand-distributor {
-      color: var(--navy); font-size: clamp(.68rem, .72vw, .74rem); font-weight: 700;
-      line-height: 1.2; letter-spacing: .06em;
-    }
+    .brand-line.green { color: #1F4D3A; }
+    .brand-line.navy { color: var(--navy); }
 
     .nav-links {
       display: flex; align-items: center; justify-content: flex-end; gap: clamp(6px, .8vw, 18px);
@@ -581,7 +577,7 @@
     @media (max-width: 1024px) {
       header { -webkit-backdrop-filter: none; backdrop-filter: none; }
       .navbar { padding-right: 52px; min-height: 76px; }
-      .brand { max-width: calc(100% - 64px); }
+      .brand { width: 100%; max-width: none; margin-right: 0; }
       .menu-toggle { display: block; position: absolute; top: 50%; right: 0; transform: translateY(-50%); }
       .nav-links {
         position: fixed; inset: 0; z-index: 1; padding: 100px var(--gutter) 40px;
@@ -612,11 +608,9 @@
       .float-card.f1 { left: -2%; }
       .float-card.f2 { bottom: 24%; right: -2%; }
       .float-card.f3 { bottom: -2%; }
-      .brand { max-width: calc(100% - 56px); }
+      .brand { width: 100%; max-width: none; }
       .brand-logo { width: min(130px, 38vw); }
-      .brand-name { font-size: .7rem; letter-spacing: .015em; white-space: normal; }
-      .brand-distributor { font-size: .68rem; letter-spacing: .015em; }
-      .brand-tagline { font-size: .7rem; white-space: normal; }
+      .brand-line { font-size: clamp(.52rem, 2.7vw, .7rem); letter-spacing: .02em; }
       .cta-row .primary-button, .cta-row .ghost-button { flex: 1 1 100%; justify-content: center; }
       .cta-row { gap: 10px; }
       .cta-row .primary-button, .cta-row .ghost-button { min-height: 50px; padding: 12px 20px; }
@@ -643,10 +637,7 @@
 
     @media (max-width: 360px) {
       .navbar { padding-right: 46px; }
-      .brand { max-width: calc(100% - 50px); }
-      .brand-name { font-size: .7rem; letter-spacing: .01em; }
-      .brand-distributor { font-size: .68rem; letter-spacing: .01em; }
-      .brand-tagline { font-size: .7rem; }
+      .brand { width: 100%; max-width: none; }
       .hero-visual { margin-bottom: 16px; }
       .float-card.f2 { bottom: 8%; }
       .float-card.f3 { bottom: -24%; }
@@ -675,9 +666,12 @@
     <div class="container navbar">
       <a class="brand" href="#top" aria-label="Aushad Pharma Distributors — home">
         <img class="brand-logo" src="assets/aushad-logo.png" alt="">
-        <span class="brand-name">GROUP OF PHARMACIES, MYSURU</span>
-        <span class="brand-distributor">WHOLESALE PHARMACEUTICAL DISTRIBUTORS</span>
-        <span class="brand-tagline">Care | Trust | Wellness</span>
+        <span class="brand-lines">
+          <span class="brand-line green">GROUP OF PHARMACIES</span>
+          <span class="brand-line navy">WHOLESALE PHARMACEUTICAL DISTRIBUTORS</span>
+          <span class="brand-line green">CARE | TRUST | WELLNESS</span>
+          <span class="brand-line navy">MYSURU</span>
+        </span>
       </a>
 
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
